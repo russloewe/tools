@@ -13,7 +13,7 @@ sudo wget -O ./dropbox.deb https://www.dropbox.com/download?dl=packages/ubuntu/d
 sudo apt-get install ./dropbox.deb
 dropbox start -i
 
-echo "Looking for touchpad
+echo "Looking for touchpad"
 a=`xinput | grep Touchpad`
 regex='id=([0-9]+)'
 if [[ $a =~ $ regex ]]; then
