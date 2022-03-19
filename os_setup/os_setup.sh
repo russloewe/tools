@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# wget -O - https://raw.githubusercontent.com/russloewe/tools/main/os_setup.sh | bash
+# wget -O - https://raw.githubusercontent.com/russloewe/tools/main/os_setup/os_setup.sh | bash
 
 a=`xinput | grep Touchpad`
 regex='id=([0-9]+)'
@@ -25,7 +25,7 @@ sudo apt-get install ./dropbox.deb
 dropbox start -i
  
 echo "Setting up xfce4 panel"
-wget -O ~/xfce4-backup-panel.tar.bz2 https://raw.githubusercontent.com/russloewe/tools/main/xfce4-backup-panel.tar.bz2 
+wget -O ~/xfce4-backup-panel.tar.bz2 https://raw.githubusercontent.com/russloewe/tools/main/os_setpu/xfce4-backup-panel.tar.bz2 
 xfce4-panel-profiles load xfce4-backup-panel.tar.bz2
 
 echo "Success"
