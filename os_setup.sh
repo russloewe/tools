@@ -2,6 +2,17 @@
 
 # wget -O - https://raw.githubusercontent.com/russloewe/tools/main/os_setup.sh | bash
 
+echo "Looking for touchpad"
+a=`xinput | grep Touchpad`
+regex='id=([0-9]+)'
+if [[ $a =~ $ regex ]]; then
+  id=${BASH_REMATCH[1]}
+  echo "Found Touchpad disabling..."
+  xinput --disable "$id"
+else
+  echo "No Touchpad found"
+fi
+
 echo "Updating apt..."
 sudo apt-get update
 
@@ -12,17 +23,6 @@ echo "Installing Dropbox"
 sudo wget -O ./dropbox.deb https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2020.03.04_amd64.deb
 sudo apt-get install ./dropbox.deb
 dropbox start -i
-
-echo "Looking for touchpad"
-a=`xinput | grep Touchpad`
-regex='id=([0-9]+)'
-if [[ $a =~ $ regex ]]; then
-  id=${BASH_REMATCH[1]}
-  echo "Found Touchpad disabling..."
-  xinput --disable $id
-else
-  echo "No Touchpad found"
-fi
  
 echo "Setting up xfce4 panel"
 wget -O ~/xfce4-backup-panel.tar.bz2 https://raw.githubusercontent.com/russloewe/tools/main/xfce4-backup-panel.tar.bz2 
