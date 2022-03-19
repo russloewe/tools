@@ -9,5 +9,5 @@ sudo apt-get install ./dropbox.deb
 dropbox start -i
 wget -c https://raw.githubusercontent.com/russloewe/tools/main/panel.tar.gz -O - | tar -xz
 rm -r ~/.config/xfce4/panel
-mv -r ~/panel ~/.config/xfce4/
+mv panel ~/.config/xfce4/
 echo "Success"
