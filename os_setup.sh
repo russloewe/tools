@@ -2,15 +2,15 @@
 
 # wget -O - https://raw.githubusercontent.com/russloewe/tools/main/os_setup.sh | bash
 
-echo "Looking for touchpad"
 a=`xinput | grep Touchpad`
 regex='id=([0-9]+)'
-if [[ $a =~ $ regex ]]; then
-  id=${BASH_REMATCH[1]}
-  echo "Found Touchpad disabling..."
-  xinput --disable "$id"
+if [[ $a =~ $regex ]]; then
+	id=${BASH_REMATCH[1]}
+	echo "Found touchpad at device #$id"
+	echo "Disabling touchpad"
+	xinput --disable $id
 else
-  echo "No Touchpad found"
+	echo "No touchpad found"
 fi
 
 echo "Updating apt..."
