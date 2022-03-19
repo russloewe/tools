@@ -13,6 +13,16 @@ sudo wget -O ./dropbox.deb https://www.dropbox.com/download?dl=packages/ubuntu/d
 sudo apt-get install ./dropbox.deb
 dropbox start -i
 
+echo "Looking for touchpad
+a=`xinput | grep Touchpad`
+regex='id=([0-9]+)'
+if [[ $a =~ $ regex ]]; then
+  echo "Found Touchpad at device # ${BASH_REMATCH[1]}, disabling..."
+  xinput --disable ${BASH_REMATCH[1]}
+else
+  echo "No Touchpad found"
+fi
+ 
 echo "Setting up xfce4 panel"
 wget -O ~/xfce4-backup-panel.tar.bz2 https://raw.githubusercontent.com/russloewe/tools/main/xfce4-backup-panel.tar.bz2 
 xfce4-panel-profiles load xfce4-backup-panel.tar.bz2
