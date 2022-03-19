@@ -17,8 +17,9 @@ echo "Looking for touchpad"
 a=`xinput | grep Touchpad`
 regex='id=([0-9]+)'
 if [[ $a =~ $ regex ]]; then
-  echo "Found Touchpad at device number ${BASH_REMATCH[1]}, disabling..."
-  xinput --disable ${BASH_REMATCH[1]}
+  id=${BASH_REMATCH[1]}
+  echo "Found Touchpad disabling..."
+  xinput --disable $id
 else
   echo "No Touchpad found"
 fi
