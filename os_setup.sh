@@ -10,5 +10,5 @@ dropbox start -i
 wget -c https://raw.githubusercontent.com/russloewe/tools/main/panel.tar.gz -O - | tar -xz
 rm -r 
 ~/.config/xfce4/panel
-mv ~/panel ~/.config/xfce4/
+mv -r ~/panel ~/.config/xfce4/
 echo "Success"
