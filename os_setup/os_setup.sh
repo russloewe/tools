@@ -30,8 +30,9 @@ else
 fi
 
 echo "Setting xconf settings..."
-xfconf-query -c xfce4-screensaver -p /saver/enabled -s false
-xfconf-query -c xfce4-screensaver -p /lock/enabled -s false
-xfconf-query -c xfce4-screensaver -p /saver/idle-activation/enabled  false -s false
+while read line
+do
+	xfconf-query -c xfce4-keyboard-shortcuts -p "$(echo $line | awk '{print $1}')" -s "$(echo $line | awk '{print $2}')" -n
+done < wget -O - https://raw.githubusercontent.com/russloewe/tools/main/os_setup/xfconf-backup.txt
 
 echo "Success"
