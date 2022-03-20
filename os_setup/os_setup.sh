@@ -33,6 +33,6 @@ echo "Setting xconf settings..."
 while read line
 do
 	xfconf-query -c xfce4-keyboard-shortcuts -p "$(echo $line | awk '{print $1}')" -s "$(echo $line | awk '{print $2}')" -n
-done < wget -O - https://raw.githubusercontent.com/russloewe/tools/main/os_setup/xfconf-backup.txt
+done < wget -O - https://raw.githubusercontent.com/russloewe/tools/main/os_setup/xfconf-settings.txt
 
 echo "Success"
