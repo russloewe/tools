@@ -30,9 +30,10 @@ else
 fi
 
 echo "Setting xconf settings..."
+wget -O ~/xfconf-settings.txt https://raw.githubusercontent.com/russloewe/tools/main/os_setup/xfconf-settings.txt
 while read line
 do
 	xfconf-query -c xfce4-keyboard-shortcuts -p "$(echo $line | awk '{print $1}')" -s "$(echo $line | awk '{print $2}')" -n
-done < wget -O - https://raw.githubusercontent.com/russloewe/tools/main/os_setup/xfconf-settings.txt
+done < xfconf-settings.txt
 
 echo "Success"
