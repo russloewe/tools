@@ -33,7 +33,7 @@ echo "Setting xconf settings..."
 wget -O ~/xfconf-settings.txt https://raw.githubusercontent.com/russloewe/tools/main/os_setup/xfconf-settings.txt
 while read line
 do
-	xfconf-query -c xfce4-keyboard-shortcuts -p "$(echo $line | awk '{print $1}')" -s "$(echo $line | awk '{print $2}')" -n
+	xfconf-query -v -c "$(echo $line | awk '{print $1}')"  -p "$(echo $line | awk '{print $2}')" -s "$(echo $line | awk '{print $3}')" -n
 done < xfconf-settings.txt
 
 echo "Success"
