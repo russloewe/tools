@@ -1,22 +1,24 @@
--power-manager/blank-on-ac                        19
-/xfce4-power-manager/blank-on-battery                   20
-/xfce4-power-manager/brightness-switch                  0
-/xfce4-power-manager/brightness-switch-restore-on-exit  1
-/xfce4-power-manager/dpms-enabled                       true
-/xfce4-power-manager/dpms-on-ac-off                     0
-/xfce4-power-manager/dpms-on-ac-sleep                   0
-/xfce4-power-manager/dpms-on-battery-off                30
-/xfce4-power-manager/dpms-on-battery-sleep              21
-/xfce4-power-manager/inactivity-sleep-mode-on-ac        1
-/xfce4-power-manager/inactivity-sleep-mode-on-battery   1
-/xfce4-power-manager/lid-action-on-ac                   0
-/xfce4-power-manager/lid-action-on-battery              3
-/xfce4-power-manager/lock-screen-suspend-hibernate      true
-/xfce4-power-manager/logind-handle-lid-switch           false
-/xfce4-power-manager/power-button-action                3
-/xfce4-power-manager/show-panel-label                   0
-/xfce4-power-manager/show-tray-icon                     false
-/lock/enabled                   false
-/saver/enabled                  false
-/saver/idle-activation/enabled  false
-/saver/mode                     0
+xfce4-power-manager /xfce4-power-manager/blank-on-ac                        20
+xfce4-power-manager /xfce4-power-manager/blank-on-battery                   10
+xfce4-power-manager /xfce4-power-manager/brightness-switch                  0
+xfce4-power-manager /xfce4-power-manager/brightness-switch-restore-on-exit  1
+xfce4-power-manager /xfce4-power-manager/dpms-enabled                       true
+xfce4-power-manager /xfce4-power-manager/dpms-on-ac-off                     0
+xfce4-power-manager /xfce4-power-manager/dpms-on-ac-sleep                   0
+xfce4-power-manager /xfce4-power-manager/dpms-on-battery-off                30
+xfce4-power-manager /xfce4-power-manager/dpms-on-battery-sleep              21
+xfce4-power-manager /xfce4-power-manager/inactivity-sleep-mode-on-ac        1
+xfce4-power-manager /xfce4-power-manager/inactivity-sleep-mode-on-battery   1
+xfce4-power-manager /xfce4-power-manager/lid-action-on-ac                   0
+xfce4-power-manager /xfce4-power-manager/lid-action-on-battery              3
+xfce4-power-manager /xfce4-power-manager/lock-screen-suspend-hibernate      true
+xfce4-power-manager /xfce4-power-manager/logind-handle-lid-switch           false
+xfce4-power-manager /xfce4-power-manager/power-button-action                3
+xfce4-power-manager /xfce4-power-manager/show-panel-label                   0
+xfce4-power-manager /xfce4-power-manager/show-tray-icon                     false
+xfce4-screensaver	/lock/enabled                   false
+xfce4-screensaver	/saver/enabled                  false
+xfce4-screensaver	/saver/idle-activation/enabled  false
+xfce4-screensaver	/saver/mode                     0
+thunar              /last-view                      ThunarDetailsView
+pointers            /Logitech_Wireless_Mouse/Acceleration  0.800000
