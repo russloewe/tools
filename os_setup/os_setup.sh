@@ -29,14 +29,6 @@ else
 	echo "No touchpad found"
 fi
 
-cat >> ~/.bashrc << EOF
-a=`xinput | grep Touchpad`
-regex='id=([0-9]+)'
-if [[ $a =~ $regex ]]; then
-	id=${BASH_REMATCH[1]}
-	xinput --disable $id
-fi
-EOF
 
 echo "Setting xconf settings..."
 wget -O ~/xfconf-settings.txt https://raw.githubusercontent.com/russloewe/tools/main/os_setup/xfconf-settings.txt
