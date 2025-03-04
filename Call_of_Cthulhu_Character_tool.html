@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Call of Cthulhu Character Sheet</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    table, th, td {
+      border: 1px solid black;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+    input {
+      width: 50px; /* Adjust the width as needed */
+      appearance: none;
+      -moz-appearance: textfield; /* Firefox */
+    }
+
+    input::-webkit-inner-spin-button,
+    input::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0; /* Remove the spinner in Webkit browsers */
+    }
+    textarea {
+      width: 75%;
+      height: 15em; /* 15 lines, adjust as needed */
+      overflow: auto;
+    }
+    button {
+		 margin: 15px;
+		 padding: 15px;
+	 }
+  </style>
+</head>
+<body>
+
+<h1>Call of Cthulhu Character Sheet</h1>
+
+<button onclick="rollStats()">Roll Stats</button>
+
+<table>
+<tr>
+<td>
+<label for="age">Age</label>
+<input type="number" id="age" value=30 >
+</td>
+</tr>
+</table>
+<table>
+  <tbody>
+      <!-- FIRST ROW -->
+    <tr>
+      <!-- STR -->
+      <td>
+        <label for="str">STR</label>
+        <input type="number" id="str" oninput="calculateValues('str')">
+        <input type="number" id="strHalf" readonly>
+        <input type="number" id="strFifth" readonly>
+      </td>
+      
+      <!-- SIZ -->
+      <td>
+        <label for="siz">SIZ</label>
+        <input type="number" id="siz" oninput="calculateValues('siz')">
+        <input type="number" id="sizHalf" readonly>
+        <input type="number" id="sizFifth" readonly>
+      </td>
+
+     <!-- Hit Points -->
+      <td>
+        <label for="luck">Hit Points</label>
+        <input type="number" id="hp">
+      </td>
+    </tr>
+      
+    <!-- SECOND ROW -->
+    <tr>
+      <!-- CON -->
+      <td>
+        <label for="con">CON</label>
+        <input type="number" id="con" oninput="calculateValues('con')">
+        <input type="number" id="conHalf" readonly>
+        <input type="number" id="conFifth" readonly>
+      </td>
+      
+      <!-- POW -->
+      <td>
+        <label for="pow">POW</label>
+        <input type="number" id="pow" oninput="calculateValues('pow')">
+        <input type="number" id="powHalf" readonly>
+        <input type="number" id="powFifth" readonly>
+      </td>
+      
+      <!-- Magic Points -->
+      <td>
+        <label for="mp">Magic Points</label>
+        <input type="number" id="mp">
+      </td>
+    </tr>
+    
+    <!-- THIRD ROW -->
+    <tr>
+      <!-- DEX -->
+      <td>
+        <label for="dex">DEX</label>
+        <input type="number" id="dex" oninput="calculateValues('dex')">
+        <input type="number" id="dexHalf" readonly>
+        <input type="number" id="dexFifth" readonly>
+      </td>
+
+      <!-- APP -->
+      <td>
+        <label for="app">APP</label>
+        <input type="number" id="app" oninput="calculateValues('app')">
+        <input type="number" id="appHalf" readonly>
+        <input type="number" id="appFifth" readonly>
+      </td>
+      
+      <!-- LUCK -->
+      <td>
+        <label for="lp">Luck Points</label>
+        <input type="number" id="lp">
+      </td>
+    </tr>
+    
+    <!-- FOURTH ROW -->
+
+
+    <tr>
+        <!-- INT -->
+      <td>
+        <label for="int">INT</label>
+        <input type="number" id="int" oninput="calculateValues('int')">
+        <input type="number" id="intHalf" readonly>
+        <input type="number" id="intFifth" readonly>
+      </td>
+      
+      <!-- EDU -->
+      <td>
+        <label for="edu">EDU</label>
+        <input type="number" id="edu" oninput="calculateValues('edu')">
+        <input type="number" id="eduHalf" readonly>
+        <input type="number" id="eduFifth" readonly>
+      </td>
+
+      <!-- Sanity -->
+      <td>
+        <label for="sanity">Sanity</label>
+        <input type="number" id="sanity">
+      </td>
+    </tr>
+    
+    <!-- FIFTH ROW -->
+    <tr>
+        <!-- MOVE -->
+        <td>
+            <label for="move">Move Rate</label>
+            <input type="number" id="move" readonly>
+        </td>
+        
+        <!-- BUILD -->
+        <td>
+            <label for="build">Build</label>
+            <input type="number" id="build" readonly>
+        </td>
+        
+        <!-- DB -->
+        <td>
+            <label for="db">Damage Bonus</label>
+            <input type="text" id="db" readonly>
+        </td>
+    </tr>
+    
+    <!-- SIXTH ROW -->
+    <td>
+        
+    
+    </td>
+    
+    <td>
+    
+    </td>
+    
+    <td>
+        <label for="pi">Personal Interest Skills</label>
+        <input type="text" id="pi" readonly>
+    </td>
+  </tbody>
+</table>
+
+<h4>Common Occupational Skill Points</h4>
+<table style="width: 300px;">
+
+        <tr>
+            <td>EDU x 4</td>
+            <td><input type="number" id="os1" readonly></td>
+        </tr>
+        <tr>
+            <td>EDU x 2 + either DEX x 2 or STR x 2</td>
+            <td><input type="number" id="os2" readonly></td>
+        </tr>
+        <tr>
+            <td>EDU x 2 + APP x 2</td>
+            <td><input type="number" id="os3" readonly></td>
+        </tr>
+        <tr>
+            <td>EDU x 2 + either APP x 2 or DEX x 2 or STR x 2</td>
+            <td><input type="number" id="os4" readonly></td>
+        </tr>
+        <tr>
+            <td>EDU x 2 + POW x 2 or DEX x2</td>
+            <td><input type="number" id="os5" readonly></td>
+        </tr>
+        
+</table>
+
+
+    <h4>Logs</h4>
+<textarea id="scrollingTextBox"></textarea>
+
+
+<button onclick="clearConsole()">Clear All</button>
+<script>
+function roll(numberOfDice, typeOfDice) {
+  let sum = 0;
+
+  for (let i = 0; i < numberOfDice; i++) {
+    // Generate a random number between 1 and the type of dice
+    let rollResult = Math.floor(Math.random() * typeOfDice) + 1;
+    
+    // Add the result to the sum
+    sum += rollResult;
+  }
+
+  return sum;
+}
+
+function rollStats() {
+	// Clear the text area content
+    document.getElementById('scrollingTextBox').value = '';
+    
+    message("Step 1a: Rolling stats");
+    let age = document.getElementById('age').value;
+    
+    // Roll stats and store the values in variables
+    var strValue = roll(3, 6)*5;
+    var conValue = roll(3, 6)*5;
+    var dexValue = roll(3, 6)*5;
+    var appValue = roll(3, 6)*5;
+    var powValue = roll(3, 6)*5;
+    var luckValue = roll(3, 6)*5;
+    var sizValue = (roll(2, 6) + 6)*5;
+    var intValue = (roll(2, 6) + 6)*5;
+    var eduValue = (roll(2, 6) + 6)*5;
+    
+    message("Step 1b: Determining age modifiers")
+    // Determine Age modifiers
+    if( age < 20){
+		 message("Deducting 5 points total form STR and SIZ for age.")
+		 strValue -= 2;
+		 sizValue -= 3;
+		 message("Duducting 5 points from EDU for age.")
+		 eduValue -= 5;
+		 var tmpluck =  roll(3, 6)*5;
+		 message("Rerolling Luck for age. ");
+		 message("Rolled " + tmpluck);
+		 
+		 if(tmpluck > luckValue){
+			 message("Using higher Luck roll " + tmpluck);
+		}else{
+			message("Using original luck roll.")
+		}
+	}
+    if(age >= 20 && age < 40){
+		 message("Rolling EDU improvment check for age:");
+		 eduValue = EDUCheck(eduValue);
+	 }
+    if(age >= 40 && age < 50){
+		 message("Deducting 5 points across STR, CON, and DEX for age.");
+		 dexValue -= 2;
+		 strValue -= 1;
+		 conValue -= 2;
+		 message("Deducting 5 points from APP for age.")
+		 appValue -= 5;
+		 message("Making 2 improvemnt checks for EDU.")
+		 eduValue = EDUCheck(eduValue);
+		 eduValue = EDUCheck(eduValue);
+	 }
+	 if(age >= 50 && age < 60){
+		 message("Deducting 10 points across STR, CON, and DEX for age.");
+		 dexValue -= 4;
+		 strValue -= 3;
+		 conValue -= 3;
+		 message("Deducting 10 points from APP for age.")
+		 appValue -= 10;
+		 message("Making 3 improvemnt checks for EDU.")
+		 eduValue = EDUCheck(eduValue);
+		 eduValue = EDUCheck(eduValue);
+		 eduValue = EDUCheck(eduValue);
+	 }
+	 if(age >= 60 && age < 70){
+		 message("Deducting 20 points across STR, CON, and DEX for age.");
+		 dexValue -= 8;
+		 strValue -= 6;
+		 conValue -= 6;
+		 message("Deducting 15 points from APP for age.")
+		 appValue -= 15;
+		 message("Making 4 improvemnt checks for EDU.")
+		 eduValue = EDUCheck(eduValue);
+		 eduValue = EDUCheck(eduValue);
+		 eduValue = EDUCheck(eduValue);
+		 eduValue = EDUCheck(eduValue);
+	 }
+	 if(age >= 70 && age < 80){
+		 message("Deducting 40 points across STR, CON, and DEX for age.");
+		 dexValue -= 13;
+		 strValue -= 13;
+		 conValue -= 14;
+		 message("Deducting 20 points from APP for age.")
+		 appValue -= 20;
+		 message("Making 5 improvemnt checks for EDU.")
+		 eduValue = EDUCheck(eduValue);
+		 eduValue = EDUCheck(eduValue);
+		 eduValue = EDUCheck(eduValue);
+		 eduValue = EDUCheck(eduValue);
+		 eduValue = EDUCheck(eduValue);
+	 }
+	 if(age >= 80 ){
+		 message("Deducting 80 points across STR, CON, and DEX for age.");
+		 dexValue -= 26;
+		 strValue -= 26;
+		 conValue -= 27;
+		 message("Deducting 25 points from APP for age.")
+		 appValue -= 25;
+		 message("Making 5 improvemnt checks for EDU.")
+		 eduValue = EDUCheck(eduValue);
+		 eduValue = EDUCheck(eduValue);
+		 eduValue = EDUCheck(eduValue);
+		 eduValue = EDUCheck(eduValue);
+		 eduValue = EDUCheck(eduValue);
+		 eduValue = EDUCheck(eduValue);
+	 }
+    
+    if(strValue < 0){strValue = 0};
+    if(conValue < 0){conValue = 0};
+    if(dexValue < 0){dexValue = 0};
+    if(appValue < 0){appValue = 0};
+    if(sizValue < 0){sizValue = 0};
+    if(strValue < 0){strValue = 0};
+
+    
+    // Update the displayed values
+    document.getElementById('str').value = strValue;
+    document.getElementById('con').value = conValue;
+    document.getElementById('dex').value = dexValue;
+    document.getElementById('app').value = appValue;
+    document.getElementById('pow').value = powValue;
+    document.getElementById('siz').value = sizValue;
+    document.getElementById('int').value = intValue;
+    document.getElementById('edu').value = eduValue;
+    document.getElementById('lp').value = luckValue;
+    
+    // Calculate additional values using the stored values
+    calculateValues('str');
+    calculateValues('con');
+    calculateValues('dex');
+    calculateValues('app');
+    calculateValues('pow');
+    calculateValues('siz');
+    calculateValues('int');
+    calculateValues('edu');
+    
+    
+    // Additional calculations
+    message("Step 2: Additional Calculations");
+    document.getElementById('sanity').value = powValue;
+    document.getElementById('hp').value = Math.floor((sizValue + conValue) / 10);
+    document.getElementById('mp').value = document.getElementById('powFifth').value;
+    
+    
+    // Calculate move value
+    message("Step 3: Determing Move Rate");
+    if(dexValue < sizValue && strValue < sizValue){
+        document.getElementById('move').value = 7;
+    }else{
+        if(dexValue > sizValue && strValue > sizValue){ document.getElementById('move').value = 9;
+        }else{
+            if(dexValue >= sizValue || strValue >= sizValue){document.getElementById('move').value = 8;};
+        }
+    };
+    
+    // Calculate age modifier for move rate
+    if(document.getElementById('age').value > 39){
+        let moveDiff = Math.floor( (document.getElementById('age').value - 30 ) / 10);
+        message("Reducing Move Rate by: " + moveDiff + " for age.");
+        document.getElementById('move').value = document.getElementById('move').value - moveDiff;
+    };
+    
+    
+    // Calculate Occupational Skills
+    message("Step 4: Determinig Example Occupational points");
+    document.getElementById('os1').value = eduValue * 4 ;
+    document.getElementById('os2').value = eduValue * 2 + Math.max(dexValue, strValue) * 2;
+    document.getElementById('os3').value = eduValue * 2 + appValue * 2;
+    document.getElementById('os4').value = eduValue * 2 + Math.max(appValue, dexValue, strValue) * 2;
+    document.getElementById('os5').value = eduValue * 2 + Math.max(powValue, dexValue) * 2;
+    
+    
+    // Calculate Personal Interest Skills
+    message("Step 5: Calculating Personal Interest points");
+    document.getElementById('pi').value = intValue * 2;
+    
+    // Calculate Combate values
+    message("Step 6: Determining Combate Values");
+    let strsiz = strValue + sizValue;
+    message("Combined STR + SIZ = " + strsiz);
+    setCombatStats(strsiz);    
+    
+    
+    
+}
+
+function setCombatStats(strsiz){
+    if(strsiz <= 64){
+        //
+        document.getElementById('db').value = "-2";
+        document.getElementById('build').value = -2;
+    };
+    if(strsiz <= 84 && strsiz > 64){
+        //
+        document.getElementById('db').value = "-1";
+        document.getElementById('build').value = -1;
+    };
+    if(strsiz <= 124 && strsiz > 84){
+        //
+        document.getElementById('db').value = " 0";
+        document.getElementById('build').value =  0;
+    };
+    if(strsiz <= 164 && strsiz > 124){
+        //
+        document.getElementById('db').value = "+1D4";
+        document.getElementById('build').value = 1;
+    };
+    if(strsiz <= 204 && strsiz > 164){
+        //
+        document.getElementById('db').value = "+1D6";
+        document.getElementById('build').value =  2;
+    };
+    if(strsiz <= 284 && strsiz > 204){
+        //
+        document.getElementById('db').value = "+2D6";
+        document.getElementById('build').value = 3;
+    };
+    if(strsiz <= 364 && strsiz >284){
+        //
+        document.getElementById('db').value = "+3D6";
+        document.getElementById('build').value = 4;
+    };
+    if(strsiz <= 444 && strsiz > 364){
+        //
+        document.getElementById('db').value = "+4D6";
+        document.getElementById('build').value = 5;
+    };
+    if(strsiz <= 524 && strsiz > 444){
+        //
+        document.getElementById('db').value = "+5D6";
+        document.getElementById('build').value = 6;
+    };
+}
+
+function message(message) {
+    // Get the text area element
+    var consoleOutput = document.getElementById('scrollingTextBox');
+
+    // Append the message to the existing content
+    consoleOutput.value += message + '\n';
+
+    // Scroll to the bottom to show the latest message
+    consoleOutput.scrollTop = consoleOutput.scrollHeight;
+}
+
+function calculateValues(attribute) {
+    var value = parseInt(document.getElementById(attribute).value);
+    var half = Math.floor(value / 2);
+    var fifth = Math.floor(value / 5);
+
+    document.getElementById(attribute + 'Half').value = half;
+    document.getElementById(attribute + 'Fifth').value = fifth;
+}
+
+function EDUCheck(value){
+	let roll = Math.floor(Math.random() * 100) + 1;
+	if(roll > value){
+		message("EDU check passed");
+		let tmpedu = Math.floor(Math.random() * 10) + 1;
+		value +=  tmpedu;
+		if(value > 99){
+			message("Max level reached");
+			value = 99;
+		}else{
+			message("adding " + tmpedu + " points.");
+		}
+	}else{
+		message("roll failed");
+	}
+	return value
+}
+
+function clearConsole() {
+    // Clear the text area content
+    document.getElementById('scrollingTextBox').value = '';
+
+    // Clear values from all input boxes
+    var inputBoxes = document.querySelectorAll('input');
+    inputBoxes.forEach(function(input) {
+		 if(input.id != 'age'){
+				input.value = '';}
+    });
+  }
+</script>
+
+</body>
+</html>
